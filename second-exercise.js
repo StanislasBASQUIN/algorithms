@@ -16,14 +16,31 @@ fs.readFile(fileName, 'utf8', (error, data) => {
         return ;
     }
     
-    const arrayData = data.split(' ').map(value => parseInt(value))
+		const arrayData = data.split(' ').map(value => parseInt(value))
+	console.log('On calcule ', sunsetCalculation(arrayData), 'immeubles ayant une vue sur le soleil couchant...')	
 });
 
+
 // On incrémente un compteur d'appartement ayant un soleil couchant : i
-// On définit le premier immeuble  étudié : j=0
+// On définit l'index du premier immeuble  étudié : j=0
 // On compare  le premier immeuble avec son voisin de droite
+// buildings[j] vs buildings[j+1] 
 // Si le voisin de droite i+1 est plus petit on n'incrémente pas le compteur, il reste au niveau i
 // Si le voisin de droite i+1 est plus grand on incrémente le compteur,
+
+
 // * i augmente de 1 : i = i+1
-// * on change le référent 
+// * on change le référent immeuble : j=i+1
 // On passe au suivant i+2, on le compare avec l'immeuble i
+
+const sunsetCalculation = (buildings) => {
+	let sunsetBuildings = 1
+	let buildingReference = 0
+	for (let j = 1 ; j <= buildings.length-1 ; j++){
+		if (buildings[j] > buildings[buildingReference]) {
+		sunsetBuildings ++
+		buildingReference = j
+		}
+	}
+	return sunsetBuildings
+}
