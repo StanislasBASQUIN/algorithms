@@ -1,3 +1,3 @@
 # Algorithms
 
-# A few exercises to Train on algorithms
+A few exercises to Train on algorithms
