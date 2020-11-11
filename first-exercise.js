@@ -16,7 +16,7 @@ fs.readFile(fileName, 'utf8', (error, data) => {
     
     const arrayData = data.split(' ').map(value => parseInt(value))
     const k = 20
-    console.log('Existe-t-il deux chiffres dont l\'addition est', k, '?', test(arrayData, k))
+    console.log('Existe-t-il deux chiffres dont l\'addition est', k, '?', test2(arrayData, k))
 });
 
 
@@ -50,4 +50,21 @@ const test = (data, k) => {
     }
   }  
   return testingNextVariable(0)
+}
+
+const test2 = (data, k) => {
+  let arrayDifference = [k - data[0]];
+
+  const dataTest = (i = 1) => {
+    if (arrayDifference.includes(data[i])) {
+      return true;
+    } else if(i === data.length - 1) {
+      return false;
+    } else {
+      arrayDifference.push(k - data[i]);
+      return dataTest(i + 1);
+    }
+  }
+
+  return dataTest();
 }
